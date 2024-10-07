@@ -2,6 +2,7 @@
 import java.util.Scanner;
 
 public class latjava2 {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Masukkan Angka Pertama: ");
@@ -9,7 +10,7 @@ public class latjava2 {
         System.out.print("Masukkan Angka Kedua: ");
         Integer kedua = sc.nextInt();
 
-        System.out.println("Angka Pertama : " + pertama + ", Angka Kedua : "+ kedua );
+        System.out.println("Angka Pertama : " + pertama + ", Angka Kedua : " + kedua);
 
         sc.close();
     }
