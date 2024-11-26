@@ -23,7 +23,6 @@ public class cleanDuck {
             }
         }
 
-
         System.out.print("Tim Bola Kesayangan: ");
         String timBola = sc.nextLine();
 
@@ -34,7 +33,7 @@ public class cleanDuck {
         System.out.print("Pilihan anda: ");
         int pilihan = sc.nextInt();
 
-        String layanan="";
+        String layanan = "";
         switch (pilihan) {
             case 1:
                 layanan = "1. Premium Washing, Rp 100.000,00";
