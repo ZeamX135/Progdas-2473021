@@ -1,3 +1,5 @@
+package CaseMethod2_ByteCollection;
+
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,7 +15,8 @@ import java.util.Scanner;
  * @author 2473021-Febrianus Leona Putra
  * @version 14 Januari 2024
  */
-public class CaseMethodB_2473012_2473018_2473021 {
+
+public class caseMethod2_ByteCollection {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         // Variabel & Fungsi
@@ -28,7 +31,6 @@ public class CaseMethodB_2473012_2473018_2473021 {
         int sizing = 0;
         int total = 0;
         String namaKasir = "";
-        int kasir;
         int jumlah;
         String yesno;
         String yesno1;
@@ -40,19 +42,26 @@ public class CaseMethodB_2473012_2473018_2473021 {
         int subtotal = 0;
         int tipePackage = 0;
         int diskon = 0;
+        int pemindah = 0;
         String tipePembayaran_real = "";
         String tipePackage_Real = "Kantung plastik";
         int harga_package = 0;
         int harga = 0;
         // Array untuk Daftar nama baju, size baju, harga baju
-        String[] daftar_baju1 = { "Kaos Polos", "Kaos Kerah", "Kemeja Lengan Panjang", "Kemeja Lengan Pendek", "Hoodie",
-                "Jaket" };
-        String[] size_baju1 = { "XS", "S", "M", "L", "XL", "XXL", "3XL" };
+        String[][] daftarDanSize_baju1 = {
+                { "Kaos Polos", "Kaos Kerah", "Kemeja Lengan Pendek", "Kemeja Lengan Panjang", "Hoodie", "Jaket" },
+                { "XS", "S", "M", "L", "XL", "XXL", "3XL" } };
         // Array List untuk daftar harga sesuai jenis baju dan sizenya.
-        // 50.000-66.000 = kaos polos; 94.000-107.000 = kaos kerah; 150.000 - 170.000 = kemeja lengan pendek;
-        // 170.000-185.000 = kemeja lengan panjang; 190.000-210.000 = kemeja lengan pendek; 250.000-300.000 = kemeja lengan panjang.
-        int[] harga_bajuSemua = {50000, 55000, 60000, 66000, 94000, 96000, 100000, 107000, 150000, 152000, 160000, 170000, 177000, 179000, 185000, 190000, 195000, 201000, 206000, 210000, 250000, 260000, 270000, 290000, 300000};
-        int[] stok_array = {}
+        // 50.000-66.000 = kaos polos; 94.000-107.000 = kaos kerah; 150.000 - 170.000 =
+        // kemeja lengan pendek;
+        // 170.000-185.000 = kemeja lengan panjang; 190.000-210.000 = kemeja lengan
+        // pendek; 250.000-300.000 = kemeja lengan panjang.
+        int[][] harga_bajuSemua = { { 50000, 55000, 60000, 66000 },
+                { 94000, 96000, 100000, 107000 },
+                { 150000, 152000, 160000, 170000, 177000, 179000, 185000 },
+                { 190000, 195000, 201000, 206000, 210000 },
+                { 250000, 260000, 270000, 290000, 300000 } };
+        // int[] stok_array = {}
         // Array List untuk daftar, size, harga dan jumlah baju.
         ArrayList<String> daftar_bajuReal = new ArrayList<String>();
         ArrayList<String> size_bajuReal = new ArrayList<String>();
@@ -66,44 +75,14 @@ public class CaseMethodB_2473012_2473018_2473021 {
                 main_pilihan = firstChoice(sc);
                 switch (main_pilihan) {
                     case 1:
-                        sizing = ukuran1(sc, harga_bajuSemua, main_pilihan);
-                        tambahItem(daftar_bajuReal, size_bajuReal, daftar_baju1, size_baju1, sizing, main_pilihan); 
-                        if (sizing == 1) {
-                            harga_bajuReal.add(harga_bajuSemua[0]);
-                        } else if (sizing == 2) {
-                            harga_bajuReal.add(harga_bajuSemua[0]);
-                        } else if (sizing == 3) {
-                            harga_bajuReal.add(harga_bajuSemua[0]);
-                        } else if (sizing == 4) {
-                            harga_bajuReal.add(harga_bajuSemua[1]);
-                        } else if (sizing == 5) {
-                            harga_bajuReal.add(harga_bajuSemua[1]);
-                        } else if (sizing == 6) {
-                            harga_bajuReal.add(harga_bajuSemua[2]);
-                        } else if (sizing == 7) {
-                            harga_bajuReal.add(harga_bajuSemua[3]);
-                        }
+                        sizing = ukuran1(sc, harga_bajuSemua, main_pilihan, harga_bajuReal);
+                        tambahItem(daftar_bajuReal, size_bajuReal, daftarDanSize_baju1, sizing, main_pilihan, 0);
                         System.out.println("======================================================");
                         break;
                     case 2:
                         // Ukuran dan harga baju untuk "Kaos Berkerah"
-                        sizing = ukuran1(sc, harga_bajuSemua, main_pilihan);
-                        tambahItem(daftar_bajuReal, size_bajuReal, daftar_baju1, size_baju1, sizing, main_pilihan);                        
-                        if (sizing == 1) {
-                            harga_bajuReal.add(harga_bajuSemua[4]);
-                        } else if (sizing == 2) {
-                            harga_bajuReal.add(harga_bajuSemua[4]);
-                        } else if (sizing == 3) {
-                            harga_bajuReal.add(harga_bajuSemua[4]);
-                        } else if (sizing == 4) {
-                            harga_bajuReal.add(harga_bajuSemua[5]);
-                        } else if (sizing == 5) {
-                            harga_bajuReal.add(harga_bajuSemua[5]);
-                        } else if (sizing == 6) {
-                            harga_bajuReal.add(harga_bajuSemua[6]);
-                        } else if (sizing == 7) {
-                            harga_bajuReal.add(harga_bajuSemua[7]);
-                        }
+                        sizing = ukuran1(sc, harga_bajuSemua, main_pilihan, harga_bajuReal);
+                        tambahItem(daftar_bajuReal, size_bajuReal, daftarDanSize_baju1, sizing, main_pilihan, 0);
                         System.out.println("======================================================");
                         break;
                     case 3:
@@ -121,111 +100,70 @@ public class CaseMethodB_2473012_2473018_2473021 {
                         switch (first_pilihan) {
                             case 1:
                                 // Ukuran dan harga baju untuk "Kemeja Lengan Pendek"
-                                sizing = ukuran1(sc, harga_bajuSemua, main_pilihan);
-                                tambahItem(daftar_bajuReal, size_bajuReal, daftar_baju1, size_baju1, sizing, main_pilihan); 
-                                if (sizing == 1) {
-                                    harga_bajuReal.add(harga_bajuSemua[8]);
-                                } else if (sizing == 2) {
-                                    harga_bajuReal.add(harga_bajuSemua[8]);
-                                } else if (sizing == 3) {
-                                    harga_bajuReal.add(harga_bajuSemua[8]);
-                                } else if (sizing == 4) {
-                                    harga_bajuReal.add(harga_bajuSemua[9]);
-                                } else if (sizing == 5) {
-                                    harga_bajuReal.add(harga_bajuSemua[9]);
-                                } else if (sizing == 6) {
-                                    harga_bajuReal.add(harga_bajuSemua[10]);
-                                } else if (sizing == 7) {
-                                    harga_bajuReal.add(harga_bajuSemua[11]);
-                                }
+                                sizing = ukuran1(sc, harga_bajuSemua, main_pilihan, harga_bajuReal);
+                                tambahItem(daftar_bajuReal, size_bajuReal, daftarDanSize_baju1, sizing, main_pilihan,
+                                        first_pilihan);
                                 System.out.println("======================================================");
                                 break;
                             case 2:
                                 // Ukuran dan harga baju untuk "Kemeja Lengan Panjang"
                                 System.out.println("\n====================== SIZING ========================");
-                                System.out.println("1. || XS (Xtra Small)\t || Rp. " + nf.format(harga_bajuSemua[11]));
-                                System.out.println("2. || S (Small)\t\t || Rp. " + nf.format(harga_bajuSemua[11]));
-                                System.out.println("3. || M (Medium)\t || Rp. " + nf.format(harga_bajuSemua[11]));
-                                System.out.println("4. || L (Large)\t\t || Rp. " + nf.format(harga_bajuSemua[11]));
-                                System.out.println("5. || XL (Xtra Large)\t || Rp. " + nf.format(harga_bajuSemua[12]));
-                                System.out.println("6. || XXL (2 Xtra Large) || Rp. " + nf.format(harga_bajuSemua[13]));
-                                System.out.println("7. || 3XL (3 Xtra Large) || Rp. " + nf.format(harga_bajuSemua[14]));
+                                System.out.println("No || Ukuran\t\t || Harga\t");
+                                System.out.println("1. || XS (Xtra Small)\t || Rp. "
+                                        + nf.format(harga_bajuSemua[main_pilihan - 1][0]));
+                                System.out.println("2. || S (Small)\t\t || Rp. "
+                                        + nf.format(harga_bajuSemua[main_pilihan - 1][0]));
+                                System.out.println(
+                                        "3. || M (Medium)\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][0]));
+                                System.out.println("4. || L (Large)\t\t || Rp. "
+                                        + nf.format(harga_bajuSemua[main_pilihan - 1][0]));
+                                System.out.println("5. || XL (Xtra Large)\t || Rp. "
+                                        + nf.format(harga_bajuSemua[main_pilihan - 1][1]));
+                                System.out.println("6. || XXL (2 Xtra Large) || Rp. "
+                                        + nf.format(harga_bajuSemua[main_pilihan - 1][2]));
+                                System.out.println("7. || 3XL (3 Xtra Large) || Rp. "
+                                        + nf.format(harga_bajuSemua[main_pilihan - 1][3]));
                                 do {
                                     System.out.print("Pilihan Size Anda (1-7): ");
                                     sizing = sc.nextInt();
+                                    if (sizing <= 4 && sizing >= 1) {
+                                        harga_bajuReal.add(harga_bajuSemua[main_pilihan - 1][0]);
+                                    } else if (sizing == 5) {
+                                        harga_bajuReal.add(harga_bajuSemua[main_pilihan - 1][1]);
+                                    } else if (sizing == 6) {
+                                        harga_bajuReal.add(harga_bajuSemua[main_pilihan - 1][2]);
+                                    } else if (sizing == 7) {
+                                        harga_bajuReal.add(harga_bajuSemua[main_pilihan - 1][3]);
+                                    }
                                     if (sizing < 1 || sizing > 7) {
                                         System.out.println("Input tidak valid, mohon ulang kembali");
                                     }
                                 } while (sizing < 1 || sizing > 7);
-                                tambahItem(daftar_bajuReal, size_bajuReal, daftar_baju1, size_baju1, sizing, main_pilihan); 
-                                if (sizing == 1) {
-                                    harga_bajuReal.add(harga_bajuSemua[11]);
-                                } else if (sizing == 2) {
-                                    harga_bajuReal.add(harga_bajuSemua[11]);
-                                } else if (sizing == 3) {
-                                    harga_bajuReal.add(harga_bajuSemua[11]);
-                                } else if (sizing == 4) {
-                                    harga_bajuReal.add(harga_bajuSemua[11]);
-                                } else if (sizing == 5) {
-                                    harga_bajuReal.add(harga_bajuSemua[12]);
-                                } else if (sizing == 6) {
-                                    harga_bajuReal.add(harga_bajuSemua[13]);
-                                } else if (sizing == 7) {
-                                    harga_bajuReal.add(harga_bajuSemua[14]);
-                                }
+                                tambahItem(daftar_bajuReal, size_bajuReal, daftarDanSize_baju1, sizing, main_pilihan,
+                                        first_pilihan);
                                 System.out.println("======================================================");
                                 break;
                         }
                         break;
                     case 4:
-                        sizing = ukuran2(sc, harga_bajuSemua, main_pilihan);
-                        tambahItem(daftar_bajuReal, size_bajuReal, daftar_baju1, size_baju1, sizing, main_pilihan);                         
-                        if (sizing == 1) {
-                            harga_bajuReal.add(harga_bajuSemua[15]);
-                        } else if (sizing == 2) {
-                            harga_bajuReal.add(harga_bajuSemua[15]);
-                        } else if (sizing == 3) {
-                            harga_bajuReal.add(harga_bajuSemua[16]);
-                        } else if (sizing == 4) {
-                            harga_bajuReal.add(harga_bajuSemua[16]);
-                        } else if (sizing == 5) {
-                            harga_bajuReal.add(harga_bajuSemua[17]);
-                        } else if (sizing == 6) {
-                            harga_bajuReal.add(harga_bajuSemua[18]);
-                        } else if (sizing == 7) {
-                            harga_bajuReal.add(harga_bajuSemua[19]);
-                        }
+                        sizing = ukuran2(sc, harga_bajuSemua, main_pilihan, harga_bajuReal);
+                        tambahItem(daftar_bajuReal, size_bajuReal, daftarDanSize_baju1, sizing, main_pilihan, 0);
                         System.out.println("======================================================");
                         break;
                     case 5:
-                        sizing = ukuran2(sc, harga_bajuSemua, main_pilihan);
-                        tambahItem(daftar_bajuReal, size_bajuReal, daftar_baju1, size_baju1, sizing, main_pilihan);                         
-                        if (sizing == 1) {
-                            harga_bajuReal.add(harga_bajuSemua[20]);
-                        } else if (sizing == 2) {
-                            harga_bajuReal.add(harga_bajuSemua[20]);
-                        } else if (sizing == 3) {
-                            harga_bajuReal.add(harga_bajuSemua[21]);
-                        } else if (sizing == 4) {
-                            harga_bajuReal.add(harga_bajuSemua[21]);
-                        } else if (sizing == 5) {
-                            harga_bajuReal.add(harga_bajuSemua[22]);
-                        } else if (sizing == 6) {
-                            harga_bajuReal.add(harga_bajuSemua[23]);
-                        } else if (sizing == 7) {
-                            harga_bajuReal.add(harga_bajuSemua[24]);
-                        }
+                        sizing = ukuran2(sc, harga_bajuSemua, main_pilihan, harga_bajuReal);
+                        tambahItem(daftar_bajuReal, size_bajuReal, daftarDanSize_baju1, sizing, main_pilihan, 0);
                         System.out.println("======================================================");
                         break;
                     default:
                 }
                 // Input jumlah itemnya
                 do {
-                System.out.print("Masukkan jumlah item: ");
-                jumlah = sc.nextInt();
-                if (jumlah == 0){
-                    System.out.println("Jumlah item tidak boleh nol!");
-                }
+                    System.out.print("Masukkan jumlah item: ");
+                    jumlah = sc.nextInt();
+                    if (jumlah == 0) {
+                        System.out.println("Jumlah item tidak boleh nol!");
+                    }
                 } while (jumlah == 0);
                 jumlah_bajuReal.add(jumlah);
                 // Input opsi tambah item atau tidaknya
@@ -236,11 +174,12 @@ public class CaseMethodB_2473012_2473018_2473021 {
                         System.out.println("Input salah, mohon ulang kembali");
                     }
                 } while (!yesno.equals("y") && !yesno.equals("n"));
-                
+
             } while (yesno.equalsIgnoreCase("y"));
             System.out.println("======================================================");
 
-            // Packaging (Jika transaksinya lebih dari 3 item, diberikan pilihan untuk menggunakan packaging ukuran large size)
+            // Packaging (Jika transaksinya lebih dari 3 item, diberikan pilihan untuk
+            // menggunakan packaging ukuran large size)
             // Tote bag 15k, atau Kantong Plastik Biasa Rp. 500
             int a = 0;
             int penentuPackage = 0;
@@ -384,7 +323,8 @@ public class CaseMethodB_2473012_2473018_2473021 {
 
         } while (yesno1.equalsIgnoreCase("y"));
     }
-    private static int firstChoice (Scanner sc) {
+
+    private static int firstChoice(Scanner sc) {
         // Pilihan pertama, jenis baju
         System.out.println("\n================= BYTE COLLECTION ====================");
         System.out.println("===== WELCOME, BYTERS! PILIH APA YANG KAMU MAU! ======");
@@ -400,11 +340,13 @@ public class CaseMethodB_2473012_2473018_2473021 {
             if (pilihan_pertama < 1 || pilihan_pertama > 5) {
                 System.out.println("Input tidak valid, mohon ulang kembali");
             }
+            System.out.println("Pilihan Anda: " + pilihan_pertama); // Debug
             System.out.println("======================================================");
         } while (pilihan_pertama < 1 || pilihan_pertama > 5);
         return pilihan_pertama;
     }
-    private static String pilihlahKasir (Scanner sc) {
+
+    private static String pilihlahKasir(Scanner sc) {
         // Pilihan Nama Kasir
         int cashier;
         String namaCashier = "";
@@ -432,73 +374,97 @@ public class CaseMethodB_2473012_2473018_2473021 {
         }
         return namaCashier;
     }
-    private static int ukuran1 (Scanner sc, int[] harga_bajuSemua, int main_pilihan) {
+
+    private static int ukuran1(Scanner sc, int[][] harga_bajuSemua, int main_pilihan,
+            ArrayList<Integer> harga_bajuReal) {
         // Ukuran dan harga baju untuk "Kaos Polos"
         NumberFormat nf = NumberFormat.getInstance(new Locale("id", "ID"));
-        int pemindah = 0;
-        if (main_pilihan == 1) {
-            pemindah = 0;
-        } else if (main_pilihan == 2) {
-            pemindah = 4;
-        } else if (main_pilihan == 3) {
-            pemindah = 8;
-        }
+        int pilihanUkuran = 0;
         int ukuran;
         System.out.println("\n====================== SIZING ========================");
-        System.out.println("1. || XS (Xtra Small)\t || Rp. " + nf.format(harga_bajuSemua[0+pemindah]));
-        System.out.println("2. || S (Small)\t\t || Rp. " + nf.format(harga_bajuSemua[0+pemindah]));
-        System.out.println("3. || M (Medium)\t || Rp. " + nf.format(harga_bajuSemua[0+pemindah]));
-        System.out.println("4. || L (Large)\t\t || Rp. " + nf.format(harga_bajuSemua[1+pemindah]));
-        System.out.println("5. || XL (Xtra Large)\t || Rp. " + nf.format(harga_bajuSemua[1+pemindah]));
-        System.out.println("6. || XXL (2 Xtra Large) || Rp. " + nf.format(harga_bajuSemua[2+pemindah]));
-        System.out.println("7. || 3XL (3 Xtra Large) || Rp. " + nf.format(harga_bajuSemua[3+pemindah]));
+        System.out.println("No || Ukuran\t\t || Harga\t");
+        System.out.println("1. || XS (Xtra Small)\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][0]) + "\t");
+        System.out.println("2. || S (Small)\t\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][0]) + "\t");
+        System.out.println("3. || M (Medium)\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][0]) + "\t");
+        System.out.println("4. || L (Large)\t\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][1]) + "\t");
+        System.out.println("5. || XL (Xtra Large)\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][1]) + "\t");
+        System.out.println("6. || XXL (2 Xtra Large) || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][2]) + "\t");
+        System.out.println("7. || 3XL (3 Xtra Large) || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][3]) + "\t");
         do {
             System.out.print("Pilihan Size Anda (1-7): ");
             ukuran = sc.nextInt();
+            harga_bajuReal.add(harga_bajuSemua[main_pilihan - 1][pilihanUkuran]);
             if (ukuran < 1 || ukuran > 7) {
                 System.out.println("Input tidak valid, mohon ulang kembali");
+            }
+            if (ukuran <= 3 && ukuran >= 1) {
+                pilihanUkuran = 0;
+            } else if (ukuran == 4 || ukuran == 5) {
+                pilihanUkuran = 1;
+            } else if (ukuran == 6 || ukuran == 7) {
+                pilihanUkuran = 2;
             }
         } while (ukuran < 1 || ukuran > 7);
         return ukuran;
     }
-    private static int ukuran2 (Scanner sc, int[] harga_bajuSemua, int main_pilihan) {
+
+    private static int ukuran2(Scanner sc, int[][] harga_bajuSemua, int main_pilihan,
+            ArrayList<Integer> harga_bajuReal) {
         // Ukuran dan harga bajunya
         NumberFormat nf = NumberFormat.getInstance(new Locale("id", "ID"));
-        int pemindah = 0;
-        if (main_pilihan == 4) {
-            pemindah = 0;
-        } else if (main_pilihan == 5) {
-            pemindah = 5;
-        } 
+        int pilihanUkuran = 0;
         int ukuran;
         System.out.println("\n====================== SIZING ========================");
-        System.out.println("1. || XS (Xtra Small)\t || Rp. " + nf.format(harga_bajuSemua[15+pemindah]));
-        System.out.println("2. || S (Small)\t\t || Rp. " + nf.format(harga_bajuSemua[15+pemindah]));
-        System.out.println("3. || M (Medium)\t || Rp. " + nf.format(harga_bajuSemua[16+pemindah]));
-        System.out.println("4. || L (Large)\t\t || Rp. " + nf.format(harga_bajuSemua[16+pemindah]));
-        System.out.println("5. || XL (Xtra Large)\t || Rp. " + nf.format(harga_bajuSemua[17+pemindah]));
-        System.out.println("6. || XXL (2 Xtra Large) || Rp. " + nf.format(harga_bajuSemua[18+pemindah]));
-        System.out.println("7. || 3XL (3 Xtra Large) || Rp. " + nf.format(harga_bajuSemua[19+pemindah]));
+        System.out.println("No || Ukuran\t\t || Harga\t");
+        System.out.println("1. || XS (Xtra Small)\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][0]));
+        System.out.println("2. || S (Small)\t\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][0]));
+        System.out.println("3. || M (Medium)\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][1]));
+        System.out.println("4. || L (Large)\t\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][1]));
+        System.out.println("5. || XL (Xtra Large)\t || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][2]));
+        System.out.println("6. || XXL (2 Xtra Large) || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][3]));
+        System.out.println("7. || 3XL (3 Xtra Large) || Rp. " + nf.format(harga_bajuSemua[main_pilihan - 1][4]));
         do {
             System.out.print("Pilihan Size Anda (1-7): ");
             ukuran = sc.nextInt();
+            if (ukuran == 1 || ukuran == 2) {
+                pilihanUkuran = 0;
+            } else if (ukuran == 3 || ukuran == 4) {
+                pilihanUkuran = 1;
+            } else if (ukuran == 5) {
+                pilihanUkuran = 2;
+            } else if (ukuran == 6) {
+                pilihanUkuran = 3;
+            } else if (ukuran == 7) {
+                pilihanUkuran = 4;
+            }
+            harga_bajuReal.add(harga_bajuSemua[main_pilihan - 1][pilihanUkuran]);
             if (ukuran < 1 || ukuran > 7) {
                 System.out.println("Input tidak valid, mohon ulang kembali");
             }
         } while (ukuran < 1 || ukuran > 7);
         return ukuran;
     }
-    private static void tambahItem(ArrayList<String> daftarBaju, ArrayList<String> sizeBaju, String [] dafBaju1, String[] sizeBajuContoh, int sizing, int pilihanUtama) {
-        daftarBaju.add(dafBaju1[pilihanUtama]);
+
+    private static void tambahItem(ArrayList<String> daftarBaju, ArrayList<String> sizeBaju,
+            String[][] daftarDanSize_Baju1, int sizing, int main_pilihan, int subPilihan) {
+        if (subPilihan == 1) {
+            daftarBaju.add(daftarDanSize_Baju1[0][2]);
+        } else if (subPilihan == 2) {
+            daftarBaju.add(daftarDanSize_Baju1[0][3]);
+        } else {
+            daftarBaju.add(daftarDanSize_Baju1[0][main_pilihan - 1]);
+        }
         if (sizing >= 1 && sizing <= 7) {
-            sizeBaju.add(sizeBajuContoh[sizing - 1]);
+            sizeBaju.add(daftarDanSize_Baju1[1][sizing - 1]);
         }
     }
 
-    private static void hapusDuplikat(ArrayList<String> daftarBaju, ArrayList<String> sizeBaju, ArrayList<Integer> hargaBaju, ArrayList<Integer> jumlahBaju) {
+    private static void hapusDuplikat(ArrayList<String> daftarBaju, ArrayList<String> sizeBaju,
+            ArrayList<Integer> hargaBaju, ArrayList<Integer> jumlahBaju) {
         for (int i = 0; i < daftarBaju.size(); i++) {
             for (int j = i + 1; j < daftarBaju.size(); j++) {
-                if (daftarBaju.get(i).equals(daftarBaju.get(j)) && sizeBaju.get(i).equals(sizeBaju.get(j)) && hargaBaju.get(i).equals(hargaBaju.get(j))) {
+                if (daftarBaju.get(i).equals(daftarBaju.get(j)) && sizeBaju.get(i).equals(sizeBaju.get(j))
+                        && hargaBaju.get(i).equals(hargaBaju.get(j))) {
                     jumlahBaju.set(i, jumlahBaju.get(i) + jumlahBaju.get(j));
                     daftarBaju.remove(j);
                     sizeBaju.remove(j);
@@ -508,5 +474,5 @@ public class CaseMethodB_2473012_2473018_2473021 {
             }
         }
     }
-    
+
 }

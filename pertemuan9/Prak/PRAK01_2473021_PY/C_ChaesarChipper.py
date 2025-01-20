@@ -5,7 +5,7 @@ Pertemuan 09
 @author 2473021-Febrianus Leona Putra
 @version 19 Oktober 2024
 """
-eks = input("Masukkan Kalimat: ")
+teks = input("Masukkan Kalimat: ")
 
 tabelsubstitusi = {
     'A': 'J', 'B': 'K', 'C': 'L', 'D': 'M', 'E': 'N', 'F': 'O', 'G': 'P', 'H': 'Q', 'I': 'R',
@@ -15,7 +15,6 @@ tabelsubstitusi = {
 
 
 terenkripsi = []
-
 for karakter in teks:
     if karakter.isalpha():
         if karakter.isupper():
